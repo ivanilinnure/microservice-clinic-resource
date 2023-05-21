@@ -1,0 +1,494 @@
+databaseChangeLog:
+    - changeSet:
+          id: 1641895077078-0
+          author: ivan (generated)
+          changes:
+              - createTable:
+                    columns:
+                        - column:
+                              constraints:
+                                  nullable: false
+                                  primaryKey: true
+                                  primaryKeyName: users_pkey
+                              name: id
+                              type: UUID
+                        - column:
+                              constraints:
+                                  nullable: false
+                              name: contact_number
+                              type: VARCHAR(255)
+                        - column:
+                              constraints:
+                                  nullable: false
+                              name: first_name
+                              type: VARCHAR(255)
+                        - column:
+                              constraints:
+                                  nullable: false
+                              name: second_name
+                              type: VARCHAR(255)
+                    tableName: users
+    - changeSet:
+          id: 1641895077078-1
+          author: ivan (generated)
+          changes:
+              - createTable:
+                    columns:
+                        - column:
+                              constraints:
+                                  nullable: false
+                                  primaryKey: true
+                                  primaryKeyName: appointments_pkey
+                              name: id
+                              type: UUID
+                        - column:
+                              constraints:
+                                  nullable: false
+                              name: date_and_time
+                              type: TIMESTAMP WITHOUT TIME ZONE
+                        - column:
+                              name: doctor_id
+                              type: UUID
+                        - column:
+                              name: patient_id
+                              type: UUID
+                    tableName: appointments
+    - changeSet:
+          id: 1641895077078-2
+          author: ivan (generated)
+          changes:
+              - createTable:
+                    columns:
+                        - column:
+                              constraints:
+                                  nullable: false
+                                  primaryKey: true
+                                  primaryKeyName: doctors_pkey
+                              name: user_id
+                              type: UUID
+                    tableName: doctors
+    - changeSet:
+          id: 1641895077078-3
+          author: ivan (generated)
+          changes:
+              - createTable:
+                    columns:
+                        - column:
+                              constraints:
+                                  nullable: false
+                              name: birth_date
+                              type: date
+                        - column:
+                              constraints:
+                                  nullable: false
+                                  primaryKey: true
+                                  primaryKeyName: patients_pkey
+                              name: user_id
+                              type: UUID
+                    tableName: patients
+    - changeSet:
+          id: 1641895077078-4
+          author: ivan (generated)
+          changes:
+              - createTable:
+                    columns:
+                        - column:
+                              constraints:
+                                  nullable: false
+                                  primaryKey: true
+                                  primaryKeyName: doctor_hospital_pkey
+                              name: doctor_id
+                              type: UUID
+                        - column:
+                              constraints:
+                                  nullable: false
+                                  primaryKey: true
+                                  primaryKeyName: doctor_hospital_pkey
+                              name: hospital_id
+                              type: UUID
+                    tableName: doctor_hospital
+    - changeSet:
+          id: 1641895077078-5
+          author: ivan (generated)
+          changes:
+              - createTable:
+                    columns:
+                        - column:
+                              constraints:
+                                  nullable: false
+                                  primaryKey: true
+                                  primaryKeyName: hospitals_pkey
+                              name: id
+                              type: UUID
+                        - column:
+                              constraints:
+                                  nullable: false
+                              name: address_number
+                              type: VARCHAR(255)
+                        - column:
+                              constraints:
+                                  nullable: false
+                              name: city
+                              type: VARCHAR(255)
+                        - column:
+                              constraints:
+                                  nullable: false
+                              name: name
+                              type: VARCHAR(255)
+                        - column:
+                              constraints:
+                                  nullable: false
+                              name: street
+                              type: VARCHAR(255)
+                    tableName: hospitals
+    - changeSet:
+          id: 1641895077078-6
+          author: ivan (generated)
+          changes:
+              - createTable:
+                    columns:
+                        - column:
+                              constraints:
+                                  nullable: false
+                                  primaryKey: true
+                                  primaryKeyName: doctor_specialization_pkey
+                              name: doctor_id
+                              type: UUID
+                        - column:
+                              constraints:
+                                  nullable: false
+                                  primaryKey: true
+                                  primaryKeyName: doctor_specialization_pkey
+                              name: specialization_id
+                              type: UUID
+                    tableName: doctor_specialization
+    - changeSet:
+          id: 1641895077078-7
+          author: ivan (generated)
+          changes:
+              - createTable:
+                    columns:
+                        - column:
+                              constraints:
+                                  nullable: false
+                                  primaryKey: true
+                                  primaryKeyName: specializations_pkey
+                              name: id
+                              type: UUID
+                        - column:
+                              constraints:
+                                  nullable: false
+                              name: description
+                              type: VARCHAR(255)
+                        - column:
+                              constraints:
+                                  nullable: false
+                              name: name
+                              type: VARCHAR(255)
+                    tableName: specializations
+    - changeSet:
+          id: 1641895077078-9
+          author: ivan (generated)
+          changes:
+              - addForeignKeyConstraint:
+                    baseColumnNames: doctor_id
+                    baseTableName: appointments
+                    constraintName: appointments_doctor_id_fkey
+                    deferrable: false
+                    initiallyDeferred: false
+                    onDelete: NO ACTION
+                    onUpdate: NO ACTION
+                    referencedColumnNames: user_id
+                    referencedTableName: doctors
+                    validate: true
+    - changeSet:
+          id: 1641895077078-10
+          author: ivan (generated)
+          changes:
+              - addForeignKeyConstraint:
+                    baseColumnNames: patient_id
+                    baseTableName: appointments
+                    constraintName: appointments_patient_id_fkey
+                    deferrable: false
+                    initiallyDeferred: false
+                    onDelete: NO ACTION
+                    onUpdate: NO ACTION
+                    referencedColumnNames: user_id
+                    referencedTableName: patients
+                    validate: true
+    - changeSet:
+          id: 1641895077078-11
+          author: ivan (generated)
+          changes:
+              - addForeignKeyConstraint:
+                    baseColumnNames: doctor_id
+                    baseTableName: doctor_hospital
+                    constraintName: doctor_hospital_doctor_id_fkey
+                    deferrable: false
+                    initiallyDeferred: false
+                    onDelete: NO ACTION
+                    onUpdate: NO ACTION
+                    referencedColumnNames: user_id
+                    referencedTableName: doctors
+                    validate: true
+    - changeSet:
+          id: 1641895077078-12
+          author: ivan (generated)
+          changes:
+              - addForeignKeyConstraint:
+                    baseColumnNames: doctor_id
+                    baseTableName: doctor_specialization
+                    constraintName: doctor_specialization_doctor_id_fkey
+                    deferrable: false
+                    initiallyDeferred: false
+                    onDelete: NO ACTION
+                    onUpdate: NO ACTION
+                    referencedColumnNames: user_id
+                    referencedTableName: doctors
+                    validate: true
+    - changeSet:
+          id: 1641895077078-13
+          author: ivan (generated)
+          changes:
+              - addForeignKeyConstraint:
+                    baseColumnNames: user_id
+                    baseTableName: doctors
+                    constraintName: doctors_user_id_fkey
+                    deferrable: false
+                    initiallyDeferred: false
+                    onDelete: NO ACTION
+                    onUpdate: NO ACTION
+                    referencedColumnNames: id
+                    referencedTableName: users
+                    validate: true
+    - changeSet:
+          id: 1641895077078-14
+          author: ivan (generated)
+          changes:
+              - addForeignKeyConstraint:
+                    baseColumnNames: user_id
+                    baseTableName: patients
+                    constraintName: patients_user_id_fkey
+                    deferrable: false
+                    initiallyDeferred: false
+                    onDelete: NO ACTION
+                    onUpdate: NO ACTION
+                    referencedColumnNames: id
+                    referencedTableName: users
+                    validate: true
+    - changeSet:
+          id: 1641895077078-15
+          author: ivan (generated)
+          changes:
+              - addForeignKeyConstraint:
+                    baseColumnNames: hospital_id
+                    baseTableName: doctor_hospital
+                    constraintName: doctor_hospital_hospital_id_fkey
+                    deferrable: false
+                    initiallyDeferred: false
+                    onDelete: NO ACTION
+                    onUpdate: NO ACTION
+                    referencedColumnNames: id
+                    referencedTableName: hospitals
+                    validate: true
+    - changeSet:
+          id: 1641895077078-16
+          author: ivan (generated)
+          changes:
+              - addUniqueConstraint:
+                    columnNames: name
+                    constraintName: hospitals_name_key
+                    tableName: hospitals
+    - changeSet:
+          id: 1641895077078-17
+          author: ivan (generated)
+          changes:
+              - addForeignKeyConstraint:
+                    baseColumnNames: specialization_id
+                    baseTableName: doctor_specialization
+                    constraintName: doctor_specialization_specialization_id_fkey
+                    deferrable: false
+                    initiallyDeferred: false
+                    onDelete: NO ACTION
+                    onUpdate: NO ACTION
+                    referencedColumnNames: id
+                    referencedTableName: specializations
+                    validate: true
+    - changeSet:
+          id: 1641895077078-18
+          author: ivan (generated)
+          changes:
+              - addUniqueConstraint:
+                    columnNames: name
+                    constraintName: specializations_name_key
+                    tableName: specializations
+    - changeSet:
+        id: 1641895077078-20
+        author: ivan (generated)
+        changes:
+          - insert:
+              tableName: users
+              columns:
+                - column: {name: id, value: '485c0984-ed16-479c-ba90-59dd440df889'}
+                - column: {name: contact_number, value: '+3801234567890'}
+                - column: {name: first_name, value: 'Іван'}
+                - column: {name: second_name, value: 'Ільїн'}
+          - insert:
+              tableName: users
+              columns:
+                - column: {name: id, value: '6f7128cc-17e8-4b7e-8a66-2b559645724f'}
+                - column: {name: contact_number, value: '+3800987654322'}
+                - column: {name: first_name, value: 'Владислав'}
+                - column: {name: second_name, value: 'Лавриненко'}
+          - insert:
+              tableName: users
+              columns:
+                - column: {name: id, value: 'bb02b577-efc0-4fa5-adaf-a237c60f7d51'}
+                - column: {name: contact_number, value: '+3801234567891'}
+                - column: {name: first_name, value: "Севасть'ян"}
+                - column: {name: second_name, value: 'Безгодков'}
+          - insert:
+              tableName: users
+              columns:
+                - column: {name: id, value: 'e4d367cc-7c2c-49f8-b624-71002356883a'}
+                - column: {name: contact_number, value: '+3800987654321'}
+                - column: {name: first_name, value: 'Микола'}
+                - column: {name: second_name, value: 'Комзолов'}
+    - changeSet:
+        id: 1641895077078-21
+        author: ivan (generated)
+        changes:
+          - insert:
+              tableName: doctors
+              columns:
+                - column: {name: user_id, value: '485c0984-ed16-479c-ba90-59dd440df889'}
+          - insert:
+              tableName: doctors
+              columns:
+                - column: {name: user_id, value: '6f7128cc-17e8-4b7e-8a66-2b559645724f'}
+    - changeSet:
+        id: 1641895077078-22
+        author: ivan (generated)
+        changes:
+          - insert:
+              tableName: patients
+              columns:
+                - column: {name: user_id, value: 'bb02b577-efc0-4fa5-adaf-a237c60f7d51'}
+                - column: {name: birth_date, value: '2003-01-01'}
+          - insert:
+              tableName: patients
+              columns:
+                - column: {name: user_id, value: 'e4d367cc-7c2c-49f8-b624-71002356883a'}
+                - column: { name: birth_date, value: '2003-02-02' }
+    - changeSet:
+        id: 1641895077078-23
+        author: ivan (generated)
+        changes:
+          - insert:
+              tableName: hospitals
+              columns:
+                - column: {name: id, value: '550e8400-e29b-41d4-a716-446655440002'}
+                - column: {name: address_number, value: '123'}
+                - column: {name: city, value: 'Kharkiv'}
+                - column: {name: name, value: 'Main Hospital'}
+                - column: {name: street, value: 'Darvina'}
+    - changeSet:
+        id: 1641895077078-24
+        author: ivan (generated)
+        changes:
+          - insert:
+              tableName: doctor_hospital
+              columns:
+                - column: {name: doctor_id, value: '485c0984-ed16-479c-ba90-59dd440df889'}
+                - column: {name: hospital_id, value: '550e8400-e29b-41d4-a716-446655440002'}
+          - insert:
+              tableName: doctor_hospital
+              columns:
+                - column: {name: doctor_id, value: '6f7128cc-17e8-4b7e-8a66-2b559645724f'}
+                - column: {name: hospital_id, value: '550e8400-e29b-41d4-a716-446655440002'}
+    - changeSet:
+        id: 1641895077078-25
+        author: ivan (generated)
+        changes:
+          - insert:
+              tableName: specializations
+              columns:
+                - column: {name: id, value: '550e8400-e29b-41d4-a716-446655440003'}
+                - column: {name: description, value: 'Deals with the health of the heart deseas'}
+                - column: {name: name, value: 'Cardiologist'}
+          - insert:
+              tableName: specializations
+              columns:
+                - column: {name: id, value: '20d82a89-8e54-435c-9f55-662993026fe2'}
+                - column: {name: description, value: 'Deals with the health of the teeth'}
+                - column: {name: name, value: 'Dentist'}
+    - changeSet:
+        id: 1641895077078-26
+        author: ivan (generated)
+        changes:
+          - insert:
+              tableName: doctor_specialization
+              columns:
+                - column: {name: doctor_id, value: '485c0984-ed16-479c-ba90-59dd440df889'}
+                - column: {name: specialization_id, value: '550e8400-e29b-41d4-a716-446655440003'}
+          - insert:
+              tableName: doctor_specialization
+              columns:
+                - column: {name: doctor_id, value: '6f7128cc-17e8-4b7e-8a66-2b559645724f'}
+                - column: {name: specialization_id, value: '20d82a89-8e54-435c-9f55-662993026fe2'}
+    - changeSet:
+        id: 1641895077078-27
+        author: ivan (generated)
+        changes:
+          - insert:
+              tableName: appointments
+              columns:
+                - column: {name: id, value: '550e8400-e29b-41d4-a716-446655440004'}
+                - column: {name: date_and_time, value: '2023-01-01 10:00:00'}
+                - column: {name: doctor_id, value: '485c0984-ed16-479c-ba90-59dd440df889'}
+                - column: {name: patient_id, value: 'bb02b577-efc0-4fa5-adaf-a237c60f7d51'}
+          - insert:
+              tableName: appointments
+              columns:
+                - column: {name: id, value: 'a8c3788f-a9b2-4d99-aef2-e8e747fe5a9d'}
+                - column: {name: date_and_time, value: '2023-01-01 11:00:00'}
+                - column: {name: doctor_id, value: '485c0984-ed16-479c-ba90-59dd440df889'}
+                - column: {name: patient_id, value: 'e4d367cc-7c2c-49f8-b624-71002356883a'}
+          - insert:
+              tableName: appointments
+              columns:
+                - column: {name: id, value: '00e5ba34-3209-41e2-9c81-d1234723bce0'}
+                - column: {name: date_and_time, value: '2023-01-01 10:00:00'}
+                - column: {name: doctor_id, value: '485c0984-ed16-479c-ba90-59dd440df889'}
+          - insert:
+              tableName: appointments
+              columns:
+                - column: {name: id, value: 'd319542b-3702-445b-85ec-3bc1b732dd07'}
+                - column: {name: date_and_time, value: '2023-01-01 11:00:00'}
+                - column: {name: doctor_id, value: '485c0984-ed16-479c-ba90-59dd440df889'}
+          - insert:
+              tableName: appointments
+              columns:
+                - column: {name: id, value: '131e96a2-8868-4bb4-bd71-50baeaca8d7b'}
+                - column: {name: date_and_time, value: '2023-01-02 10:00:00'}
+                - column: {name: doctor_id, value: '6f7128cc-17e8-4b7e-8a66-2b559645724f'}
+                - column: {name: patient_id, value: 'bb02b577-efc0-4fa5-adaf-a237c60f7d51'}
+          - insert:
+              tableName: appointments
+              columns:
+                - column: {name: id, value: '78fe3030-6a76-4f0d-a633-4a05be189a99'}
+                - column: {name: date_and_time, value: '2023-01-02 11:00:00'}
+                - column: {name: doctor_id, value: '6f7128cc-17e8-4b7e-8a66-2b559645724f'}
+                - column: {name: patient_id, value: 'e4d367cc-7c2c-49f8-b624-71002356883a'}
+          - insert:
+              tableName: appointments
+              columns:
+                - column: {name: id, value: '5f315549-395d-40a0-a3b6-3a7c66cc6cde'}
+                - column: {name: date_and_time, value: '2023-01-02 10:00:00'}
+                - column: {name: doctor_id, value: '6f7128cc-17e8-4b7e-8a66-2b559645724f'}
+          - insert:
+              tableName: appointments
+              columns:
+                - column: {name: id, value: 'c1969116-dda9-42a6-9d05-3a5aaf4e8fc9'}
+                - column: {name: date_and_time, value: '2023-01-02 11:00:00'}
+                - column: {name: doctor_id, value: '6f7128cc-17e8-4b7e-8a66-2b559645724f'}
