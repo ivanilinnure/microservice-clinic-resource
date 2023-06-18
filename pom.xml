@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.softserve</groupId>
-    <artifactId>Clinic</artifactId>
+    <artifactId>resource</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>microservice-clinic-resource</name>
     <description>MicroserviceClinicResource</description>

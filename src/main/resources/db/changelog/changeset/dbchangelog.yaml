@@ -337,21 +337,21 @@ databaseChangeLog:
               tableName: users
               columns:
                 - column: {name: id, value: '6f7128cc-17e8-4b7e-8a66-2b559645724f'}
-                - column: {name: contact_number, value: '+3800987654322'}
+                - column: {name: contact_number, value: '+380987654322'}
                 - column: {name: first_name, value: 'Владислав'}
                 - column: {name: second_name, value: 'Лавриненко'}
           - insert:
               tableName: users
               columns:
                 - column: {name: id, value: 'bb02b577-efc0-4fa5-adaf-a237c60f7d51'}
-                - column: {name: contact_number, value: '+3801234567891'}
+                - column: {name: contact_number, value: '+380123456789'}
                 - column: {name: first_name, value: "Севасть'ян"}
                 - column: {name: second_name, value: 'Безгодков'}
           - insert:
               tableName: users
               columns:
                 - column: {name: id, value: 'e4d367cc-7c2c-49f8-b624-71002356883a'}
-                - column: {name: contact_number, value: '+3800987654321'}
+                - column: {name: contact_number, value: '+380987654321'}
                 - column: {name: first_name, value: 'Микола'}
                 - column: {name: second_name, value: 'Комзолов'}
     - changeSet:
